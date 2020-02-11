@@ -46,6 +46,6 @@ function createBoard(){
     }
 }
 
-init();
+// init();
 console.log("Normie board")
 console.log(board);

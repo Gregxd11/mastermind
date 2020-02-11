@@ -1,0 +1,28 @@
+.playerChoice{
+    width: 5em;
+    height: 5em;
+    border: 2px black solid;
+    position: relative;
+    display: inline-block;
+}
+
+.playerColorChoices{
+    display: none;
+    position: absolute;
+    width: 5em;
+    height: 5em;
+    z-index: 1;
+}
+
+.playerChoice:hover .playerColorChoices{
+    display: block;
+}
+
+.playerColorChoices .playerColor{
+    padding: 25px;
+    background-color: black;
+}
+
+.playerColor:hover {
+    background-color: blue;
+}
