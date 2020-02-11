@@ -1,17 +1,14 @@
-.playerChoice{
+.playerChoice, .emptyRow{
     width: 5em;
     height: 5em;
     border: 2px black solid;
-    position: relative;
     display: inline-block;
 }
 
 .playerColorChoices{
     display: none;
-    position: absolute;
-    width: 5em;
-    height: 5em;
     z-index: 1;
+    position: relative;
 }
 
 .playerChoice:hover .playerColorChoices{
@@ -19,7 +16,7 @@
 }
 
 .playerColorChoices .playerColor{
-    padding: 25px;
+    padding: 2.5em;
     background-color: black;
 }
 
