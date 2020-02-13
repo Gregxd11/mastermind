@@ -12,20 +12,28 @@ function game(){
     playerGuess.push(parseInt(window.prompt("Please enter a number 0-3")));
     }
     compareGuesses();
-
-    console.log(playerGuess)
 }
 
 function compareGuesses(){
-    let comparisonBoard = [...board];
+    let comparisonBoardComp = [...board];
+    let comparisonBoardPlayer = [...playerGuess]
     let exactMatch = 0;
+    let noMatch = 0;
     let partialMatch = 0;
-    let noMatch = 0
     for(let i = 0; i < 4; i++){
-        if(board[i] == playerGuess[i]){comparisonBoard.splice(i, 1); exactMatch++}
+        if(board[i] == playerGuess[i]){
+            comparisonBoardComp.splice(i,1);
+            comparisonBoardPlayer.splice(i, 1);
+            exactMatch++
+        }
     }
-    for(let i = 0; i < 4; i++){
-        if(comparisonBoard.includes(playerGuess[i])){comparisonBoard.splice(comparisonBoard.indexOf(playerGuess[i]),1); partialMatch++}
+    let boardLength = comparisonBoardComp.length
+    for(let i = 0; i < boardLength ; i++){
+        console.log(boardLength)
+        if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
+            comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]),1);
+            partialMatch++
+        }
         else{noMatch++}
     }
     console.log('exact')
@@ -34,10 +42,10 @@ function compareGuesses(){
     console.log(partialMatch)
     console.log('none')
     console.log(noMatch)
-    console.log("comparison board")
-    console.log(comparisonBoard);
-    //go through board and look for exact matches
-    //with remaining numbers look for partial match
+    console.log("Player board:" + playerGuess)
+console.log("Computer board:" + board)
+console.log("Computer comparision:" + comparisonBoardComp)
+console.log("Player comparision:" + comparisonBoardPlayer)
 }
 
 function createBoard(){
@@ -46,6 +54,5 @@ function createBoard(){
     }
 }
 
-// init();
-console.log("Normie board")
-console.log(board);
+init();
+

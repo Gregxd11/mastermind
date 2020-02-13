@@ -15,11 +15,36 @@
     display: block;
 }
 
-.playerColorChoices .playerColor{
+.playerColorChoices .playerColorPurple{
     padding: 2.5em;
-    background-color: black;
+    background-color:#6200a7;
 }
 
-.playerColor:hover {
-    background-color: blue;
+.playerColorChoices .playerColorBlue{
+    padding: 2.5em;
+    background-color:#0045a7;
 }
+
+.playerColorChoices .playerColorYellow{
+    padding: 2.5em;
+    background-color:#a76200;
+}
+
+.playerColorChoices .playerColorGreen{
+    padding: 2.5em;
+    background-color:#45a700;
+}
+
+.playerColorPurple:hover {
+    background-color: #440074;
+}
+.playerColorBlue:hover {
+    background-color: #003074;
+}
+.playerColorYellow:hover {
+    background-color: #744400;
+}
+.playerColorGreen:hover {
+    background-color: #307400;
+}
+
