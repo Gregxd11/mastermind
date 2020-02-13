@@ -3,15 +3,23 @@ let playerGuess = [];
 
 
 function init(){
-    createBoard();
+    computerBoard();
     game();
 }
 
+
 function game(){
-    for(let i = 0; i < 4; i++){
-    playerGuess.push(parseInt(window.prompt("Please enter a number 0-3")));
-    }
-    compareGuesses();
+    $('#submit').click(function(){
+        if($('.player-choice').css('background-color') == 'rgb(255, 255, 255)'){
+            alert("You must select 4 colors.")
+        } else {
+            playerGuess.push(colorToInt($('#playerChoice1')));
+            playerGuess.push(colorToInt($('#playerChoice2')));
+            playerGuess.push(colorToInt($('#playerChoice3')));
+            playerGuess.push(colorToInt($('#playerChoice4')));
+            compareGuesses();
+        }
+    })
 }
 
 function compareGuesses(){
@@ -48,11 +56,40 @@ console.log("Computer comparision:" + comparisonBoardComp)
 console.log("Player comparision:" + comparisonBoardPlayer)
 }
 
-function createBoard(){
+function computerBoard(){
     for(let i = 0; i < 4; i++){
         board.push(Math.floor(Math.random() * 4 ))
     }
 }
+
+function colorToInt(color){
+    let bgColor = color.css('background-color')
+    if( bgColor == 'rgb(98, 0, 167)'){
+        return 0
+    } else if(bgColor == 'rgb(0, 69, 167)'){
+        return 1
+    } else if(bgColor == 'rgb(167, 98, 0)'){
+        return 2
+    } else {
+        return 3
+    }
+}
+
+$('.color-select').click(function() {
+    if($(this).hasClass("player-color-purple")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#6200a7');
+    }
+    else if($(this).hasClass("player-color-blue")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#0045a7');
+    }
+    else if($(this).hasClass("player-color-yellow")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#a76200');
+    }
+    else if($(this).hasClass("player-color-green")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#45a700');
+    }
+})
+
 
 init();
 

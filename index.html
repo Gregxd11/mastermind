@@ -8,82 +8,111 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
     <title>Mastermind</title>
   </head>
   <body>
     <div class="container text-center my-5">
-      <div class="gameBoard">
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
+      <div id="gameBoard">
+        <span class="row-1">
+          <div class="empty-row"></div>
+          <div class="empty-row"></div>
+          <div class="empty-row"></div>
+          <div class="empty-row"></div>
+        </span>
         <br>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
         <br>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
         <br>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
         <br>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
-        <div class="emptyRow"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <br>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <br>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <br>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <br>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <br>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
+        <div class="empty-row"></div>
         <br>
       </div>
     </div>
-    <div class="container text-center">
-      <div class="selectionBar">
-        <div class="playerChoice">
-          <div class="playerColorChoices">
-            <div class="playerColorPurple"></div>
-            <div class="playerColorBlue"></div>
-            <div class="playerColorYellow"></div>
-            <div class="playerColorGreen"></div>
+    <div class="container text-center mb-5">
+      <div class="selection-bar">
+        <div id="playerChoice1" class="player-choice">
+          <div class="player-color-choice">
+            <div class="color-select player-color-purple"></div>
+            <div class="color-select player-color-blue"></div>
+            <div class="color-select player-color-yellow"></div>
+            <div class="color-select player-color-green"></div>
           </div>          
         </div>
-        <div class="playerChoice">
-          <div class="playerColorChoices">
-            <div class="playerColorPurple"></div>
-            <div class="playerColorBlue"></div>
-            <div class="playerColorYellow"></div>
-            <div class="playerColorGreen"></div>
+        <div id="playerChoice2" class="player-choice">
+          <div class="player-color-choice">
+            <div class="color-select player-color-purple"></div>
+            <div class="color-select player-color-blue"></div>
+            <div class="color-select player-color-yellow"></div>
+            <div class="color-select player-color-green"></div>
           </div>   
         </div>
-        <div class="playerChoice">
-          <div class="playerColorChoices">
-            <div class="playerColorPurple"></div>
-            <div class="playerColorBlue"></div>
-            <div class="playerColorYellow"></div>
-            <div class="playerColorGreen"></div>
+        <div id="playerChoice3" class="player-choice">
+          <div class="player-color-choice">
+            <div class="color-select player-color-purple"></div>
+            <div class="color-select player-color-blue"></div>
+            <div class="color-select player-color-yellow"></div>
+            <div class="color-select player-color-green"></div>
           </div>   
         </div>
-        <div class="playerChoice">
-          <div class="playerColorChoices">
-            <div class="playerColorPurple"></div>
-            <div class="playerColorBlue"></div>
-            <div class="playerColorYellow"></div>
-            <div class="playerColorGreen"></div>
+        <div id="playerChoice4" class="player-choice">
+          <div class="player-color-choice">
+            <div class="color-select player-color-purple"></div>
+            <div class="color-select player-color-blue"></div>
+            <div class="color-select player-color-yellow"></div>
+            <div class="color-select player-color-green"></div>
           </div>   
+        </div>
+        <div class="col-12">
+          <button id="submit" class="btn btn-lg btn-outline-dark">Submit</button>
         </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
     <script src="javascript.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>

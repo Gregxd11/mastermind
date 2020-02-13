@@ -1,50 +1,59 @@
-.playerChoice, .emptyRow{
-    width: 5em;
-    height: 5em;
+.player-choice{
+    width: 4em;
+    height: 4em;
+    border: 2px black solid;
+    display: inline-block;
+    background-color: white;
+}
+
+.empty-row{
+    width: 2.5em;
+    height: 2.5em;
     border: 2px black solid;
     display: inline-block;
 }
 
-.playerColorChoices{
+.player-color-choice{
     display: none;
     z-index: 1;
     position: relative;
 }
 
-.playerChoice:hover .playerColorChoices{
+.player-choice:hover .player-color-choice{
     display: block;
+    margin-top: 3.8em;
 }
 
-.playerColorChoices .playerColorPurple{
-    padding: 2.5em;
+.player-color-choice .player-color-purple{
+    padding: 1.5em;
     background-color:#6200a7;
 }
 
-.playerColorChoices .playerColorBlue{
-    padding: 2.5em;
+.player-color-choice .player-color-blue{
+    padding: 1.5em;
     background-color:#0045a7;
 }
 
-.playerColorChoices .playerColorYellow{
-    padding: 2.5em;
+.player-color-choice .player-color-yellow{
+    padding: 1.5em;
     background-color:#a76200;
 }
 
-.playerColorChoices .playerColorGreen{
-    padding: 2.5em;
+.player-color-choice .player-color-green{
+    padding: 1.5em;
     background-color:#45a700;
 }
 
-.playerColorPurple:hover {
+.player-color-purple:hover {
     background-color: #440074;
 }
-.playerColorBlue:hover {
+.player-color-blue:hover {
     background-color: #003074;
 }
-.playerColorYellow:hover {
+.player-color-yellow:hover {
     background-color: #744400;
 }
-.playerColorGreen:hover {
+.player-color-green:hover {
     background-color: #307400;
 }
 
