@@ -117,7 +117,6 @@ function testlogic(){
     comparisonBoardPlayer = comparisonBoardPlayer.filter(x => x < 4)
     let boardLength = comparisonBoardComp.length
     for(let i = 0; i < boardLength; i++){
-        console.log("looper")
         if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
             comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]), 1);
             if(guessOrder[i] !== 2){
