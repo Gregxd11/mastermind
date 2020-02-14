@@ -98,9 +98,8 @@
 
 // init();
 function testlogic(){
-    let board = [3, 2, 1, 2]
-    let comparisonBoardComp = [3, 2, 1, 2];
-    let comparisonBoardPlayer = [1, 2, 2, 3];
+    let comparisonBoardComp = [3, 1, 0, 2];
+    let comparisonBoardPlayer = [3, 2, 0, 1];
     let guessOrder = [0, 0, 0, 0]
     let exactMatch = 0;
     let noMatch = 0;
@@ -113,18 +112,13 @@ function testlogic(){
             exactMatch++
         }
     }
-    comparisonBoardComp = comparisonBoardComp.filter(x => x < 4)
-    comparisonBoardPlayer = comparisonBoardPlayer.filter(x => x < 4)
-    let boardLength = comparisonBoardComp.length
-    for(let i = 0; i < boardLength; i++){
-        if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
-            comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]), 1);
-            if(guessOrder[i] !== 2){
-                console.log("kkr")
-                guessOrder.splice(board.indexOf(comparisonBoardPlayer[i]), 1, 1);
-            }
+    for(let i = 0; i < 4; i++){
+        if(comparisonBoardPlayer[i] == 4){continue;}
+        else if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
+            guessOrder.splice(i, 1, 1);
+            comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]), 1); 
             partialMatch++;
-        } else{noMatch++;}
+        } else {noMatch++;}
     }
     console.log('exact')
     console.log(exactMatch);
