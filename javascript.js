@@ -1,117 +1,69 @@
-// let board = [];
-// let playerGuess = [];
+let board = [];
+let playerGuess = [];
+let guessOrder = [0, 0, 0, 0]
+let guesses = 1 
+let gameOver = false;
 
 
-// function init(){
-//     computerBoard();
-//     game();
-// }
+function init(){
+    computerBoard();
+    game();
+}
 
 
-// function game(){
-//     $('#submit').click(function(){
-//         if($('.player-choice').css('background-color') == 'rgb(255, 255, 255)'){
-//             alert("You must select 4 colors.")
-//         } else {
-//             playerGuess.push(colorToInt($('#playerChoice1')));
-//             playerGuess.push(colorToInt($('#playerChoice2')));
-//             playerGuess.push(colorToInt($('#playerChoice3')));
-//             playerGuess.push(colorToInt($('#playerChoice4')));
-//             compareGuesses();
-//         }
-//     })
-// }
+function game(){
+    if(!gameOver){
+        $('#submit').click(playRound)
+    }
+}
 
-// function compareGuesses(){
-//     let comparisonBoardComp = [...board];
-//     let comparisonBoardPlayer = [...playerGuess]
-//     let guessOrder = [0, 0, 0, 0]
-//     let exactMatch = 0;
-//     let noMatch = 0;
-//     let partialMatch = 0;
-//     for(let i = 0; i < 4; i++){
-//         if(board[i] == playerGuess[i]){
-//             comparisonBoardComp.splice(i, 1);
-//             comparisonBoardPlayer.splice(i, 1);
-//             guessOrder.splice(i, 1, 2);
-//             exactMatch++
-//         }
-//     }
-//     let boardLength = comparisonBoardComp.length
-//     for(let i = 0; i < boardLength ; i++){
-//         console.log(boardLength)
-//         if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
-//             comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]),1);
-//             partialMatch++
-//         }
-//         else{noMatch++}
-//     }
-//     console.log('exact')
-//     console.log(exactMatch);
-//     console.log('partial')
-//     console.log(partialMatch)
-//     console.log('none')
-//     console.log(noMatch)
-//     console.log("Player board:" + playerGuess)
-// console.log("Computer board:" + board)
-// console.log("Computer comparision:" + comparisonBoardComp)
-// console.log("Player comparision:" + comparisonBoardPlayer)
-// console.log(guessOrder)
-// }
+function playRound(){
+    if($('.player-choice').css('background-color') == 'rgb(255, 255, 255)'){
+        alert("You must select 4 colors.")
+    } else {
+        playerGuess.push(colorToInt($('#playerChoice1')));
+        playerGuess.push(colorToInt($('#playerChoice2')));
+        playerGuess.push(colorToInt($('#playerChoice3')));
+        playerGuess.push(colorToInt($('#playerChoice4')));
+        compareGuesses();
+        guessResults(guesses);
+        checkWinner();
+        $('.player-choice').css('background-color', 'rgb(255, 255, 255')
+        playerGuess = []
+        guesses++
+    }
+}
 
+function checkWinner(){
+    if(guessOrder[0] + guessOrder[1] + guessOrder[2] + guessOrder[3] == 8){
+        alert('You win! It only took you ' + guesses + ' guesses!')
+        gameOver = true;
+    } else if(guesses >= 10){
+        alert('You lose. Better luck next time!')
+        gameOver = true;
+    } else {
+        guessOrder = [0, 0, 0, 0]
+    }
+}
 
-
-// function computerBoard(){
-//     for(let i = 0; i < 4; i++){
-//         board.push(Math.floor(Math.random() * 4 ))
-//     }
-// }
-
-// function colorToInt(color){
-//     let bgColor = color.css('background-color')
-//     if( bgColor == 'rgb(98, 0, 167)'){
-//         return 0
-//     } else if(bgColor == 'rgb(0, 69, 167)'){
-//         return 1
-//     } else if(bgColor == 'rgb(167, 98, 0)'){
-//         return 2
-//     } else {
-//         return 3
-//     }
-// }
-
-// $('.color-select').click(function() {
-//     if($(this).hasClass("player-color-purple")){
-//         $(this).parentsUntil(".selection-bar").css('background-color', '#6200a7');
-//     }
-//     else if($(this).hasClass("player-color-blue")){
-//         $(this).parentsUntil(".selection-bar").css('background-color', '#0045a7');
-//     }
-//     else if($(this).hasClass("player-color-yellow")){
-//         $(this).parentsUntil(".selection-bar").css('background-color', '#a76200');
-//     }
-//     else if($(this).hasClass("player-color-green")){
-//         $(this).parentsUntil(".selection-bar").css('background-color', '#45a700');
-//     }
-// })
-
-
-// init();
-function testlogic(){
-    let comparisonBoardComp = [3, 1, 0, 2];
-    let comparisonBoardPlayer = [3, 2, 0, 1];
-    let guessOrder = [0, 0, 0, 0]
+function compareGuesses(){
+    let comparisonBoardComp = [...board];
+    let comparisonBoardPlayer = [...playerGuess];
     let exactMatch = 0;
     let noMatch = 0;
     let partialMatch = 0;
+
+    //First pass through array checking for exact matches
     for(let i = 0; i < 4; i++){
         if(comparisonBoardComp[i] == comparisonBoardPlayer[i]){
-            comparisonBoardComp.splice(i, 1, 4);
+            comparisonBoardComp.splice(i, 1, 4); //Replaces original choice with 4 to mark exact match
             comparisonBoardPlayer.splice(i, 1, 4);
             guessOrder.splice(i, 1, 2);
             exactMatch++
         }
     }
+
+    //Second pass through array checking for partial matches
     for(let i = 0; i < 4; i++){
         if(comparisonBoardPlayer[i] == 4){continue;}
         else if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
@@ -130,4 +82,84 @@ function testlogic(){
     console.log("Player comparision:" + comparisonBoardPlayer)
     console.log(guessOrder)
 }
-testlogic();
+
+function guessResults(n){
+    let row = "#row" + n
+    $(row).children().each(function(index, element){
+        if(playerGuess[index] == 0){
+            $(this).css('background-color', 'rgb(98, 0, 167)')
+            if(guessOrder[index] == 2){
+                $(this).css('border', 'solid green 4px')
+            } else if (guessOrder[index] == 1){
+                $(this).css('border', 'solid orange 4px')
+            } else {
+                $(this).css('border', 'solid red 4px')
+            }
+        } else if (playerGuess[index] == 1){
+            $(this).css('background-color', 'rgb(0, 69, 167)')
+            if(guessOrder[index] == 2){
+                $(this).css('border', 'solid green 4px')
+            } else if (guessOrder[index] == 1){
+                $(this).css('border', 'solid orange 4px')
+            } else {
+                $(this).css('border', 'solid red 4px')
+            }
+        } else if (playerGuess[index] == 2){
+            $(this).css('background-color', 'rgb(167, 98, 0)')
+            if(guessOrder[index] == 2){
+                $(this).css('border', 'solid green 4px')
+            } else if (guessOrder[index] == 1){
+                $(this).css('border', 'solid orange 4px')
+            } else {
+                $(this).css('border', 'solid red 4px')
+            }
+        } else {
+            $(this).css('background-color', 'rgb(69, 167, 0)')
+            if(guessOrder[index] == 2){
+                $(this).css('border', 'solid green 4px')
+            } else if (guessOrder[index] == 1){
+                $(this).css('border', 'solid orange 4px')
+            } else {
+                $(this).css('border', 'solid red 4px')
+            }
+        }
+    })
+}
+
+function computerBoard(){
+    for(let i = 0; i < 4; i++){
+        board.push(Math.floor(Math.random() * 4 ))
+    }
+}
+
+function colorToInt(color){
+    let bgColor = color.css('background-color')
+    if( bgColor == 'rgb(98, 0, 167)'){
+        return 0
+    } else if(bgColor == 'rgb(0, 69, 167)'){
+        return 1
+    } else if(bgColor == 'rgb(167, 98, 0)'){
+        return 2
+    } else {
+        return 3
+    }
+}
+
+//Changes background color of square selected by player dropdown
+$('.color-select').click(function() {
+    if($(this).hasClass("player-color-purple")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#6200a7');
+    }
+    else if($(this).hasClass("player-color-blue")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#0045a7');
+    }
+    else if($(this).hasClass("player-color-yellow")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#a76200');
+    }
+    else if($(this).hasClass("player-color-green")){
+        $(this).parentsUntil(".selection-bar").css('background-color', '#45a700');
+    }
+})
+
+
+init();
