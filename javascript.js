@@ -91,7 +91,7 @@ function guessResults(n){
             if(guessOrder[index] == 2){
                 $(this).css('border', 'solid green 4px')
             } else if (guessOrder[index] == 1){
-                $(this).css('border', 'solid orange 4px')
+                $(this).css('border', 'solid #f48f00 4px')
             } else {
                 $(this).css('border', 'solid red 4px')
             }
@@ -100,7 +100,7 @@ function guessResults(n){
             if(guessOrder[index] == 2){
                 $(this).css('border', 'solid green 4px')
             } else if (guessOrder[index] == 1){
-                $(this).css('border', 'solid orange 4px')
+                $(this).css('border', 'solid #f48f00 4px')
             } else {
                 $(this).css('border', 'solid red 4px')
             }
@@ -109,7 +109,7 @@ function guessResults(n){
             if(guessOrder[index] == 2){
                 $(this).css('border', 'solid green 4px')
             } else if (guessOrder[index] == 1){
-                $(this).css('border', 'solid orange 4px')
+                $(this).css('border', 'solid #f48f00 4px')
             } else {
                 $(this).css('border', 'solid red 4px')
             }
@@ -118,12 +118,22 @@ function guessResults(n){
             if(guessOrder[index] == 2){
                 $(this).css('border', 'solid green 4px')
             } else if (guessOrder[index] == 1){
-                $(this).css('border', 'solid orange 4px')
+                $(this).css('border', 'solid #f48f00 4px')
             } else {
                 $(this).css('border', 'solid red 4px')
             }
         }
     })
+}
+
+function borderColor(){
+    if(guessOrder[index] == 2){
+        $(this).css('border', 'solid green 4px')
+    } else if (guessOrder[index] == 1){
+        $(this).css('border', 'solid orange 4px')
+    } else {
+        $(this).css('border', 'solid red 4px')
+    }
 }
 
 function computerBoard(){
