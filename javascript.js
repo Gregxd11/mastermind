@@ -6,13 +6,19 @@ let guesses = 1
 
 function game(){
     computerBoard();
+    $('#submit').click(playRound)
 }
 
-$('#submit').click(playRound)
 $('#reset').click(reset);
 
 function playRound(){
-    if($('.player-choice').css('background-color') == 'rgb(255, 255, 255)'){
+    let checkIfEmpty = 0
+    $('.player-choice').each(function(){
+        if($(this).css('background-color') == 'rgb(255, 255, 255)'){
+            checkIfEmpty += 1
+        }
+    })
+    if(checkIfEmpty > 0 ){
         alert("You must select 4 colors.")
     } else {
         playerGuess.push(colorToInt($('#playerChoice1')));
@@ -44,10 +50,12 @@ function reset(){
 function checkWinner(){
     if(guessOrder[0] + guessOrder[1] + guessOrder[2] + guessOrder[3] == 8){
         alert('You win! It only took you ' + guesses + ' guesses!')
+        $('#submit').unbind();
        showSolution();
     } else if(guesses >= 10){
         alert('You lose. Better luck next time!')
         showSolution();
+        $('#submit').unbind();
     } else {
         guessOrder = [0, 0, 0, 0]
     }
