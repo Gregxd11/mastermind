@@ -2,20 +2,14 @@ let board = [];
 let playerGuess = [];
 let guessOrder = [0, 0, 0, 0]
 let guesses = 1 
-let gameOver = false;
-
-
-function init(){
-    computerBoard();
-    game();
-}
 
 
 function game(){
-    if(!gameOver){
-        $('#submit').click(playRound)
-    }
+    computerBoard();
 }
+
+$('#submit').click(playRound)
+$('#reset').click(reset);
 
 function playRound(){
     if($('.player-choice').css('background-color') == 'rgb(255, 255, 255)'){
@@ -34,13 +28,26 @@ function playRound(){
     }
 }
 
+function reset(){
+    board = []
+    playerGuess = []
+    guesses = 1
+    guessOrder = [0, 0, 0, 0]
+    $('.empty-row').css({
+        'background-color' : 'rgb(255, 255, 255)',
+        'border' : 'solid black 2px'
+    })
+    $('.player-choice').css('background-color', 'rgb(255, 255, 255')
+    game();
+}
+
 function checkWinner(){
     if(guessOrder[0] + guessOrder[1] + guessOrder[2] + guessOrder[3] == 8){
         alert('You win! It only took you ' + guesses + ' guesses!')
-        gameOver = true;
+       showSolution();
     } else if(guesses >= 10){
         alert('You lose. Better luck next time!')
-        gameOver = true;
+        showSolution();
     } else {
         guessOrder = [0, 0, 0, 0]
     }
@@ -49,9 +56,6 @@ function checkWinner(){
 function compareGuesses(){
     let comparisonBoardComp = [...board];
     let comparisonBoardPlayer = [...playerGuess];
-    let exactMatch = 0;
-    let noMatch = 0;
-    let partialMatch = 0;
 
     //First pass through array checking for exact matches
     for(let i = 0; i < 4; i++){
@@ -59,7 +63,6 @@ function compareGuesses(){
             comparisonBoardComp.splice(i, 1, 4); //Replaces original choice with 4 to mark exact match
             comparisonBoardPlayer.splice(i, 1, 4);
             guessOrder.splice(i, 1, 2);
-            exactMatch++
         }
     }
 
@@ -69,20 +72,11 @@ function compareGuesses(){
         else if(comparisonBoardComp.includes(comparisonBoardPlayer[i])){
             guessOrder.splice(i, 1, 1);
             comparisonBoardComp.splice(comparisonBoardComp.indexOf(comparisonBoardPlayer[i]), 1); 
-            partialMatch++;
-        } else {noMatch++;}
+        }
     }
-    console.log('exact')
-    console.log(exactMatch);
-    console.log('partial')
-    console.log(partialMatch)
-    console.log('none')
-    console.log(noMatch)
-    console.log("Computer comparision:" + comparisonBoardComp)
-    console.log("Player comparision:" + comparisonBoardPlayer)
-    console.log(guessOrder)
 }
 
+//Puts previous player guess into next row on gameboard
 function guessResults(n){
     let row = "#row" + n
     $(row).children().each(function(index, element){
@@ -122,6 +116,20 @@ function guessResults(n){
             } else {
                 $(this).css('border', 'solid red 4px')
             }
+        }
+    })
+}
+
+function showSolution(){
+    $('#computerCombination').children().each(function(index, element){
+        if(board[index] == 0){
+            $(this).css('background-color', 'rgb(98, 0, 167)')
+        } else if (board[index] == 1){
+            $(this).css('background-color', 'rgb(0, 69, 167)')
+        } else if (board[index] == 2){
+            $(this).css('background-color', 'rgb(167, 98, 0)')
+        } else {
+            $(this).css('background-color', 'rgb(69, 167, 0)')
         }
     })
 }
@@ -172,4 +180,4 @@ $('.color-select').click(function() {
 })
 
 
-init();
+game();

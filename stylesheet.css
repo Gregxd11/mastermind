@@ -3,16 +3,27 @@
     height: 4em;
     border: 2px black solid;
     display: inline-block;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
-.empty-row{
+.empty-row, #exactMatch, #partialMatch, #noMatch{
     width: 2.5em;
     height: 2.5em;
     border: 2px black solid;
     display: inline-block;
 }
 
+#exactMatch{
+    border: 4px green solid;
+}
+
+#partialMatch {
+    border: solid #f48f00 4px;
+}
+
+#noMatch {
+    border: solid red 4px;
+}
 .player-color-choice{
     display: none;
     z-index: 1;
